@@ -46,3 +46,11 @@ def dfs_pre_post(a_list,start):
     edges = {}
     dfs_pre_post_utils(a_list,start,visited,pre,post,count,edges)
     return visited,pre,post,edges
+
+def cycle_detection(a_list):
+    visited,pre,post,edges = dfs_pre_post(a_list,1)
+    for u in a_list:
+        for v in a_list[u]:
+            if pre[u]<pre[v] and post[u]>post[v] and (u,v) not in edges:
+                return True
+    return False
